@@ -1,10 +1,9 @@
+**Disclaimer: This fork and patch for the original Qonsole project is fully AI slopped, I just wanted it to work. I won't support this project in any form.**
+
 # ![*](logo/Qonsole_48sm.png) Qonsole
 
 A Quake-like Console Emulator written in AutoHotkey v2. Configurable with [Cmd](https://en.wikipedia.org/wiki/Cmd.exe) and [mintty](https://mintty.github.io/).
-Sourceforge project page: https://sourceforge.net/p/qonsole-ahk
 Released under the [MIT License](LICENSE.md).
-
-[![Download for Microsoft Windows](logo/download_x86.png)](https://github.com/joedf/Qonsole/releases/latest)
 
 ### Requirements
 - Windows 10 or Windows 11
@@ -41,26 +40,3 @@ CaskaydiaCove and keep the face name in `Console_Font`, or set it to a face you 
 
 The default hotkey is still `Win+C`, which also opens Copilot on current Windows 11
 builds. Change it in the Qonsole settings if you need Copilot.
-
-### Screenshots
-_Default view_
-> ![screenshot1](screens/s1.png)
-
-_Settings panel_
-> ![screenshot2](screens/s2.png)
-
-### User Reviews
-*_billman87_*
-★★★★★ (5/5)
-> Handy tool for anyone that uses the console daily.
-_Posted 08/04/2016_
-
-*_triarif_*
-★★★★★ (5/5)
-> so far so good, i just want the icon clicked once not double-clicked to bring the console
-_Posted 05/07/2015_
-
-*_winiciuscota_*
-★★★★★ (5/5)
-> thank you very much!
-_Posted 02/04/2015_
