@@ -52,6 +52,7 @@ global CMD_Width := 0
 global CMD_Height := 266
 global CMD_StartUpArgs := " "
 global CMD_offset := 0
+global StartDir := EnvGet("USERPROFILE")   ; directory the console opens in
 global Mintty_path := ""
 global Console_Font := "CaskaydiaCove NFM"
 global Console_FontSize := 16
@@ -341,7 +342,7 @@ CloseConsole() {
 ;###################[ Launch ]#####################
 
 LaunchCmd() {
-    global con, cPID, offset, winCh, cmd_w_fix, CMD_Path
+    global con, cPID, offset, winCh, cmd_w_fix, CMD_Path, StartDir
 
     con := "ahk_class ConsoleWindowClass"
 
@@ -384,7 +385,7 @@ LaunchCmd() {
     ; conhost.exe forces a classic console window even when Windows Terminal is
     ; the default terminal application.
     try
-        Run('conhost.exe "' exe '" ' extraArgs ' ' CMD_StartUpArgs, , , &launchPid)
+        Run('conhost.exe "' exe '" ' extraArgs ' ' CMD_StartUpArgs, StartDir, , &launchPid)
     catch
         return false
 
@@ -445,7 +446,7 @@ LaunchCmd() {
 }
 
 LaunchMintty() {
-    global con, cPID, cmd_w_fix, winCh, xC_height, Mintty_path
+    global con, cPID, cmd_w_fix, winCh, xC_height, Mintty_path, StartDir
 
     con := "ahk_class mintty"
 
@@ -465,7 +466,7 @@ LaunchMintty() {
     }
 
     try
-        Run('"' Mintty_path '" ' CMD_StartUpArgs, , , &launchPid)
+        Run('"' Mintty_path '" ' CMD_StartUpArgs, StartDir, , &launchPid)
     catch
         return false
     cPID := launchPid
@@ -796,8 +797,9 @@ ShowProgramSettings(*) {
     cbReduceMem := g.AddCheckBox("x16 y+4 h20" (ReduceMemory ? " Checked" : ""), "Reduce Memory Usage")
     cbAutoWinActivate := g.AddCheckBox("x+64 yp h20 Disabled" (AutoWinActivate ? " Checked" : ""), "Auto WinActivate")
 
-    g.AddButton("x62 y+14 w100 h30 Default", "&Save").OnEvent("Click", GuiSave)
-    g.AddButton("x+100 yp w100 h30", "&Cancel").OnEvent("Click", SettingsGuiClose)
+    ; 338px dialog: two 100px buttons with a 10px gap centred leaves 64px on each side
+    g.AddButton("x64 y+14 w100 h30 Default", "&Save").OnEvent("Click", GuiSave)
+    g.AddButton("x+10 yp w100 h30", "&Cancel").OnEvent("Click", SettingsGuiClose)
 
     SettingsCtl := {
         WinKey: cbWinKey, Hotkey: hk, Transparency: upTransparency,
